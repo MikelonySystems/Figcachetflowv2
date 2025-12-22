@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserPlus, Eye, EyeOff, CheckCircle2, CreditCard, Smartphone, ArrowLeft } from 'lucide-react@0.487.0';
+import { UserPlus, Eye, EyeOff, CheckCircle2, CreditCard, Smartphone, ArrowLeft, Zap } from 'lucide-react@0.487.0';
 
 interface SignupProps {
   onSignup: () => void;
@@ -43,6 +43,7 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
         'Support par email',
         'Mises à jour gratuites',
       ],
+      gradient: 'from-primary to-blue-600',
     },
     {
       id: 'annual',
@@ -61,6 +62,7 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
         'Économisez 50% 🎉',
       ],
       popular: true,
+      gradient: 'from-primary via-purple-600 to-blue-600',
     },
   ];
 
@@ -120,14 +122,21 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
   const selectedPlanDetails = subscriptionPlans.find(p => p.id === selectedPlan);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F8F9FA] via-white to-[#F1F3F5] p-4 overflow-y-auto py-8">
-      <div className="w-full max-w-5xl">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-slate-950 dark:via-blue-950/30 dark:to-slate-900 p-4 overflow-y-auto py-8 relative">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="w-full max-w-5xl relative z-10">
         {/* Bouton retour à l'accueil */}
         {onBackToHome && (
           <button
             type="button"
             onClick={onBackToHome}
-            className="flex items-center gap-2 text-[#6B7280] hover:text-[#0A1E3F] transition-colors mb-6"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Retour à l'accueil
@@ -136,11 +145,11 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
 
         {/* Logo et titre */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#0A1E3F] rounded-2xl mb-4 shadow-lg">
-            <UserPlus className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary via-blue-600 to-purple-600 rounded-2xl mb-4 shadow-xl shadow-primary/25">
+            <Zap className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-[#0A1E3F] mb-2">Créer un compte</h1>
-          <p className="text-[#6B7280]">
+          <h1 className="bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">Créer un compte</h1>
+          <p className="text-muted-foreground">
             {currentStep === 'plan' && 'Choisissez votre formule'}
             {currentStep === 'account' && 'Créez votre compte'}
             {currentStep === 'payment' && 'Configurez votre paiement'}
@@ -149,18 +158,18 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
 
         {/* Indicateur d'étapes */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className={`flex items-center gap-2 ${currentStep === 'plan' ? 'text-[#0A1E3F]' : 'text-[#9CA3AF]'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              currentStep === 'plan' ? 'bg-[#0A1E3F] text-white' : 'bg-[#E5E7EB]'
+          <div className={`flex items-center gap-2 transition-colors ${currentStep === 'plan' ? 'text-primary' : 'text-muted-foreground'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+              currentStep === 'plan' ? 'bg-gradient-to-br from-primary to-blue-600 text-white shadow-lg shadow-primary/25' : 'bg-muted'
             }`}>
               1
             </div>
             <span className="hidden sm:inline">Formule</span>
           </div>
-          <div className="w-12 h-0.5 bg-[#E5E7EB]"></div>
-          <div className={`flex items-center gap-2 ${currentStep === 'account' ? 'text-[#0A1E3F]' : 'text-[#9CA3AF]'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              currentStep === 'account' ? 'bg-[#0A1E3F] text-white' : 'bg-[#E5E7EB]'
+          <div className="w-12 h-0.5 bg-border"></div>
+          <div className={`flex items-center gap-2 transition-colors ${currentStep === 'account' ? 'text-primary' : 'text-muted-foreground'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+              currentStep === 'account' ? 'bg-gradient-to-br from-primary to-blue-600 text-white shadow-lg shadow-primary/25' : 'bg-muted'
             }`}>
               2
             </div>
@@ -168,10 +177,10 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
           </div>
           {selectedPlan !== 'gratuit' && (
             <>
-              <div className="w-12 h-0.5 bg-[#E5E7EB]"></div>
-              <div className={`flex items-center gap-2 ${currentStep === 'payment' ? 'text-[#0A1E3F]' : 'text-[#9CA3AF]'}`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  currentStep === 'payment' ? 'bg-[#0A1E3F] text-white' : 'bg-[#E5E7EB]'
+              <div className="w-12 h-0.5 bg-border"></div>
+              <div className={`flex items-center gap-2 transition-colors ${currentStep === 'payment' ? 'text-primary' : 'text-muted-foreground'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                  currentStep === 'payment' ? 'bg-gradient-to-br from-primary to-blue-600 text-white shadow-lg shadow-primary/25' : 'bg-muted'
                 }`}>
                   3
                 </div>
@@ -181,7 +190,7 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
           )}
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg border border-[#E5E7EB] p-8">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-2xl border-2 border-border/50 p-8">
           <form onSubmit={handleSubmit}>
             {/* Étape 1: Choix de la formule */}
             {currentStep === 'plan' && (
@@ -192,37 +201,37 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
                       key={plan.id}
                       type="button"
                       onClick={() => setSelectedPlan(plan.id)}
-                      className={`relative rounded-xl border-2 p-6 transition-all text-left ${
+                      className={`relative rounded-xl border-2 p-6 transition-all text-left group ${
                         selectedPlan === plan.id
-                          ? 'border-[#0A1E3F] bg-[#F9FAFB] shadow-lg scale-105'
-                          : 'border-[#E5E7EB] hover:border-[#D1D5DB]'
+                          ? 'border-primary bg-gradient-to-br from-primary/5 to-blue-600/5 shadow-2xl shadow-primary/20 scale-105'
+                          : 'border-border/50 hover:border-primary/30 hover:shadow-lg bg-background'
                       }`}
                     >
                       {plan.popular && (
-                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#0A1E3F] text-white text-xs rounded-full">
+                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-primary to-blue-600 text-white text-xs rounded-full shadow-lg">
                           Populaire
                         </span>
                       )}
                       {plan.badge && (
-                        <span className="absolute -top-3 left-4 px-3 py-1 bg-red-600 text-white text-xs rounded-full">
+                        <span className="absolute -top-3 left-4 px-3 py-1 bg-gradient-to-r from-destructive to-orange-600 text-white text-xs rounded-full shadow-lg">
                           {plan.badge}
                         </span>
                       )}
                       {selectedPlan === plan.id && (
-                        <div className="absolute -top-3 right-4 flex items-center gap-1 px-3 py-1 bg-emerald-600 text-white text-xs rounded-full">
+                        <div className="absolute -top-3 right-4 flex items-center gap-1 px-3 py-1 bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs rounded-full shadow-lg">
                           <CheckCircle2 className="w-3 h-3" />
                           Sélectionné
                         </div>
                       )}
                       <div className="mb-4">
-                        <h3 className="text-[#374151] mb-1">{plan.name}</h3>
-                        <p className="text-xs text-[#6B7280] mb-3">{plan.description}</p>
+                        <h3 className="text-foreground mb-1">{plan.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-3">{plan.description}</p>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-[#0A1E3F]">{plan.price}</span>
+                          <span className={`bg-gradient-to-r ${plan.gradient} bg-clip-text text-transparent`}>{plan.price}</span>
                           {plan.originalPrice && (
-                            <span className="text-[#9CA3AF] line-through text-sm">{plan.originalPrice}</span>
+                            <span className="text-muted-foreground line-through text-sm">{plan.originalPrice}</span>
                           )}
-                          <span className="text-[#6B7280]">/{plan.period}</span>
+                          <span className="text-muted-foreground">/{plan.period}</span>
                         </div>
                         {plan.savings && (
                           <p className="text-xs text-primary mt-1">{plan.savings}</p>
@@ -232,7 +241,7 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
                         {plan.features.map((feature, index) => (
                           <li
                             key={index}
-                            className="flex items-start gap-2 text-sm text-[#6B7280]"
+                            className="flex items-start gap-2 text-sm text-muted-foreground"
                           >
                             <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                             <span>{feature}</span>
@@ -245,7 +254,7 @@ export function Signup({ onSignup, onBackToLogin, onBackToHome }: SignupProps) {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#0A1E3F] text-white py-3 rounded-xl hover:bg-[#152945] transition-all shadow-md hover:shadow-lg"
+                  className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white py-3 rounded-xl transition-all shadow-xl shadow-primary/25"
                 >
                   Continuer avec {selectedPlanDetails?.name}
                 </button>
