@@ -1,4 +1,4 @@
-import { LayoutDashboard, Receipt, CreditCard, Car, Briefcase, TrendingUp, FileText, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Receipt, CreditCard, Car, Briefcase, TrendingUp, FileText, Settings, LogOut, HelpCircle } from "lucide-react";
 
 const menuItems = [
   { title: "Dashboard", icon: LayoutDashboard, page: "dashboard" },
@@ -75,6 +75,17 @@ export function FloatingMenu({ currentPage, onPageChange }: FloatingMenuProps) {
         >
           <Settings className="w-5 h-5" />
           <span className="text-sm">Préférences</span>
+        </button>
+        <button
+          onClick={() => onPageChange("aide")}
+          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 w-full text-left mt-1 ${
+            currentPage === "aide"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "hover:bg-muted text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <HelpCircle className="w-5 h-5" />
+          <span className="text-sm">Aide</span>
         </button>
       </div>
     </aside>

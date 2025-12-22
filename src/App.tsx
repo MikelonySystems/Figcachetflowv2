@@ -20,6 +20,7 @@ import { RevenuPage } from "./components/RevenuPage";
 import { BilanAnnuelPage } from "./components/BilanAnnuelPage";
 import { PreferencesPage } from "./components/PreferencesPage";
 import { ComptePage } from "./components/ComptePage";
+import { AidePage } from "./components/AidePage";
 import { Toaster } from "./components/ui/sonner";
 import { Wallet, TrendingDown, Clock, Calendar } from "lucide-react@0.487.0";
 
@@ -187,6 +188,10 @@ export default function App() {
           ) : currentPage === "compte" ? (
             <div className="max-w-[1200px] mx-auto h-full overflow-y-auto">
               <ComptePage />
+            </div>
+          ) : currentPage === "aide" ? (
+            <div className="max-w-[1200px] mx-auto h-full overflow-y-auto">
+              <AidePage />
             </div>
           ) : (
             <div className="max-w-[1600px] mx-auto h-full flex items-center justify-center">
