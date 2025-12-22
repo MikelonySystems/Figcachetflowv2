@@ -4,6 +4,8 @@ import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { LandingPage } from "./components/LandingPage";
 import { FonctionnalitesPage } from "./components/FonctionnalitesPage";
+import { CguPage } from "./components/CguPage";
+import { MentionsLegalesPage } from "./components/MentionsLegalesPage";
 import { StatsCard } from "./components/StatsCard";
 import { MonthResultCard } from "./components/MonthResultCard";
 import { RevenueChart } from "./components/RevenueChart";
@@ -23,7 +25,7 @@ import { Wallet, TrendingDown, Clock, Calendar } from "lucide-react@0.487.0";
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authPage, setAuthPage] = useState<'login' | 'signup' | 'landing' | 'features'>('landing');
+  const [authPage, setAuthPage] = useState<'login' | 'signup' | 'landing' | 'features' | 'cgu' | 'mentions'>('landing');
   const [currentPage, setCurrentPage] = useState("dashboard");
 
   // Si l'utilisateur n'est pas connecté, afficher la landing page, connexion ou inscription
@@ -52,12 +54,22 @@ export default function App() {
       return <FonctionnalitesPage onBack={() => setAuthPage('landing')} />;
     }
     
+    if (authPage === 'cgu') {
+      return <CguPage onBack={() => setAuthPage('landing')} />;
+    }
+    
+    if (authPage === 'mentions') {
+      return <MentionsLegalesPage onBack={() => setAuthPage('landing')} />;
+    }
+    
     // Landing page par défaut
     return (
       <LandingPage
         onLogin={() => setAuthPage('login')}
         onSignup={() => setAuthPage('signup')}
         onGoToFeatures={() => setAuthPage('features')}
+        onGoToCgu={() => setAuthPage('cgu')}
+        onGoToMentions={() => setAuthPage('mentions')}
       />
     );
   }
