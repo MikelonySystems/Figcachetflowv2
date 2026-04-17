@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { LogIn, Eye, EyeOff, ArrowLeft, Zap } from 'lucide-react@0.487.0';
+import logoIcon from "figma:asset/0e19cb487deade254993902fbb14c03d239ca231.png";
+import logoText from "figma:asset/63a5d684b913244c6f683c3d81e6e8bb7be26d2d.png";
 
 interface LoginProps {
   onLogin: () => void;
@@ -43,10 +45,10 @@ export function Login({ onLogin, onGoToSignup, onBackToHome }: LoginProps) {
 
         {/* Logo et titre */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary via-blue-600 to-purple-600 rounded-2xl mb-4 shadow-xl shadow-primary/25">
-            <Zap className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4 shadow-xl overflow-hidden bg-white/80 dark:bg-slate-900/80 p-3">
+            <img src={logoIcon} alt="CachetFlow" className="w-full h-full object-contain" />
           </div>
-          <h1 className="bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">CachetFlow</h1>
+          <img src={logoText} alt="CachetFlow" className="h-10 w-auto object-contain mx-auto mb-2" />
           <p className="text-muted-foreground">Gérez vos cachets et revenus en toute simplicité</p>
         </div>
 

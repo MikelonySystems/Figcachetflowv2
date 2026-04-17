@@ -1,4 +1,6 @@
 import { LayoutDashboard, Receipt, CreditCard, Car, Briefcase, TrendingUp, FileText, Settings, LogOut, HelpCircle } from "lucide-react";
+import logoIcon from "figma:asset/0e19cb487deade254993902fbb14c03d239ca231.png";
+import logoText from "figma:asset/63a5d684b913244c6f683c3d81e6e8bb7be26d2d.png";
 
 const menuItems = [
   { title: "Dashboard", icon: LayoutDashboard, page: "dashboard" },
@@ -28,11 +30,11 @@ export function FloatingMenu({ currentPage, onPageChange }: FloatingMenuProps) {
           onClick={() => onPageChange("compte")}
           className="flex items-center gap-3 hover:bg-muted/50 transition-all rounded-lg p-2 flex-1 -m-2"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg">
-            <span className="text-lg">M</span>
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden">
+            <img src={logoIcon} alt="CachetFlow" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col">
-            <span className="text-sm text-foreground">MIKELONY</span>
+            <img src={logoText} alt="CachetFlow" className="h-5 w-auto object-contain" />
             <span className="text-xs text-muted-foreground">Mon compte</span>
           </div>
         </button>
