@@ -1,7 +1,7 @@
 
-  # MikelonyAppLandingPage
+  # CachetFlow Landing
 
-  This is a code bundle for MikelonyAppLandingPage. The original project is available at https://www.figma.com/design/zCzvAOBlVVYMMR9sYqMcDJ/MikelonyAppLandingPage.
+  This is a code bundle for CachetFlow Landing. The original project is available at https://www.figma.com/design/zCzvAOBlVVYMMR9sYqMcDJ/CachetFlow-Landing.
 
   ## Running the code
 
